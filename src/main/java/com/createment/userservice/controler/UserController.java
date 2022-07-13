@@ -11,11 +11,10 @@ import java.util.List;
 
 @RestController
 public class UserController {
-    private final UserRepository userRepository;
+
     private final UserService service;
 
-    public UserController(UserRepository userRepository, UserService service) {
-        this.userRepository = userRepository;
+    public UserController(UserService service) {
         this.service = service;
     }
 
@@ -30,12 +29,12 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    UserDTO save(@RequestBody UserDTO userDTO){
+    UserDTO save(@RequestBody UserDTO userDTO) {
         return service.save(userDTO);
     }
 
     @DeleteMapping("/user/{username}")
-    void delete(@PathVariable String username){
-    service.delete(username);
+    void delete(@PathVariable String username) {
+        service.delete(username);
     }
 }
